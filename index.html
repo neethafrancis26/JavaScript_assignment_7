@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7</title>
+    <link rel="stylesheet" src="css/index.css">
+</head>
+
+<body>
+    <h1>Assignment 7</h1>
+    <div class="main">
+        <p id="descriptionText"></p>
+        <p id="metadata"></p>
+    </div>
+    <hr>
+
+    <div id="filterPrice"></div>
+    <hr>
+
+    <div id="sortedName"></div>
+    <hr>
+
+    <form id="detailsForm">
+        <label for="fname">Name:</label>
+        <input type="text" id="fname" name="fname" required><br>
+        <p class="err_msg" id="nameError">Name is required</p>
+
+        <label for="desc">Description:</label>
+        <textarea id="desc" name="desc" rows="2" cols="20" required></textarea><br>
+        <p class="err_msg" id="descError">Description is required</p>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" maxlength="6" required><br>
+        <p class="err_msg" id="priceError">price is required</p>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+
+    <div id="dataDisplay"></div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
