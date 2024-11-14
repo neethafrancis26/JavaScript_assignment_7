@@ -16,18 +16,20 @@ xhr.onload = function () {
                 arr.forEach((element) => {
                     const card = document.createElement("div");
                     card.style.width = "200px";
-                    card.style.height = "250px";
+                    card.style.height = "180px";
+                    card.style.borderRadius = "20px"
                     card.style.background = "pink";
                     card.style.color = "black";
                     card.style.margin = "10px";
                     card.style.padding = "10px";
 
                     card.innerText = `
-                        Name: ${element.name}
-                        Description: ${element.description}
+                        Name: ${element.name} 
+                        Description: ${element.description} 
                         Price: ${element.price}
                         `;
                     descriptionText.appendChild(card);
+
                 });
             }
             displayCards(arr);
@@ -44,37 +46,33 @@ xhr.onload = function () {
             `;
 
             // Question 1: Write a JavaScript function to filter items in the array based on price (e.g., show only items over $500).
-            const filterPrice = document.getElementById("filterPrice");
-            const result = arr.filter(CheckPrice);
-
-            filterPrice.innerHTML = result
-                .map((item) => `
+            function renderHTML(container, items) {
+                container.innerHTML = items
+                    .map((item) => `
                 <div>
                     Name: ${item.name} <br>
                     Description: ${item.description} <br>
                     Price: ${item.price} <br><br>
                 </div
                 `).join("");
+            }
 
+            const filterPrice = document.getElementById("filterPrice");
             function CheckPrice(item) {
                 return item.price >= 500;
             }
 
+            const result = arr.filter(CheckPrice);
+            renderHTML(filterPrice, result);
+
             // Question 2: Create a function to sort the array of items by name or price in ascending or descending order.
             const sortedName = document.getElementById("sortedName");
-            const newArray = sortedItems(arr);
-            sortedName.innerHTML = newArray
-                .map((item) => `
-                <div>
-                    Name: ${item.name} <br>
-                    Description: ${item.description} <br>
-                    Price: ${item.price} <br><br>
-                    </div
-                `).join("");
-
             function sortedItems(item) {
                 return item.sort((a, b) => a.name.localeCompare(b.name));
             }
+
+            const newArray = sortedItems(arr);
+            renderHTML(sortedName, newArray);
 
             // Question 3: Create a simple form (also add validation) to add a new items to the items array and display it immediately in the card section.
             const detailsForm = document.getElementById("detailsForm");
@@ -144,7 +142,7 @@ xhr.onload = function () {
                 </div>
                 `;
             }
-            
+
         } catch (e) {
             console.warn("There Was An Error In JSON Couldn't Parse.");
         }
